@@ -1,0 +1,120 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}moodify{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1DB954">
+    <link rel="icon" href="/Users/hemmanuel/Downloads/spotify-logo.png" type="image/png">
+    <title>moodify</title>
+
+    <!-- Link to Spotify's color palette and font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Circular:wght@700&display=swap">
+
+    <style>
+        body {
+            background-color: #121212; /* Dark background color */
+            color: #FFFFFF; /* White text color */
+            font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify font */
+        }
+
+        .container {
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1DB954; /* Spotify green */
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        h4 {
+            color: #b3b3b3; /* Light grey for subtitles */
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #1DB954; /* Spotify green */
+            color: #FFFFFF; /* White text color */
+            border: none;
+            padding: 12px 24px;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1ED760; /* Lighter green on hover */
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        button.selected {
+            background-color: #282828; /* Spotify grey for selected button */
+        }
+
+        li {
+        background-color: #282828; /* Darker background for recommended songs */
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        text-align: left;
+        font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify font */
+        font-size: 16px; /* Adjust font size as needed */
+        line-height: 1.6; /* Adjust line height as needed */
+        }
+
+        a {
+            color: #1DB954; /* Spotify green for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>moodify</h1>
+        <h4>your mood-based music recommendation system</h4>
+        <form method="post" action="{{ url_for('index') }}">
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            {% for mood, label in form.mood_options %}
+            <button type="submit" name="selected_mood" value="{{ mood }}" {% if form.selected_mood.data == mood %}class="selected"{% endif %}>{{ label }}</button>
+            {% endfor %}
+        </form>
+        {% if recommended_tracks %}
+        <h3>recommended playlist:</h3>
+        <ul>
+            {% for track_name, artists, spotify_url in recommended_tracks %}
+            <li>{{ track_name }} by {{ artists }} - <a href="{{ spotify_url }}" target="_blank">listen on spotify</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>
+{% endblock %}
