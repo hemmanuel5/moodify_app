@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1DB954">
-    <link rel="icon" href="/Users/hemmanuel/Downloads/spotify-logo.png" type="image/png">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <title>moodify</title>
 
     <!-- Link to Spotify's color palette and font -->
@@ -137,14 +137,13 @@
             font-size: 16px; /* Adjust font size as needed */
             line-height: 1.6; /* Adjust line height as needed */
         }
-        
 
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>moodify</h1>
+        <h1><b>moodify</b></h1>
         <h4>your mood-based music recommendation system</h4>
         <form method="post" action="{{ url_for('index') }}">
             {{ form.hidden_tag() }}
@@ -176,5 +175,3 @@
 
 </html>
 {% endblock %}
-
-
