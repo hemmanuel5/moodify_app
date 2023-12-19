@@ -52,6 +52,7 @@ class MoodForm(FlaskForm):
 
 def get_recommendations(selected_mood):
     try:
+
         # Filter the dataframe based on the selected mood
         selected_df = test_df[test_df['predicted_mood'] == selected_mood]
         print(test_df['predicted_mood'].unique())  # Print unique values in the 'predicted_mood' column
@@ -64,7 +65,13 @@ def get_recommendations(selected_mood):
 
         # Extract relevant information from the recommendations
         recommended_tracks = [
-            (track['name'], ', '.join(artist['name'] for artist in track['artists']), track['external_urls']['spotify'], track['uri'])
+            (
+                track['name'],
+                ', '.join(artist['name'] for artist in track['artists']),
+                track['external_urls']['spotify'],
+                track['uri'],
+                track.get('explicit', False)  # Include explicit information, default to False if not available
+            )
             for track in recommendations['tracks']
         ]
 
@@ -151,5 +158,3 @@ def spotify_callback():
 if __name__ == '__main__':
     app.jinja_env.globals['bootstrap'] = bootstrap
     app.run(debug=True, port=5001, host='0.0.0.0')
-
-
