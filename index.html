@@ -16,11 +16,12 @@
     <!-- Link to Spotify's color palette and font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Circular:wght@700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
         body {
-            background-color: #121212; /* Dark background color */
-            color: #FFFFFF; /* White text color */
+            background-color: #191414; /* Spotify black */
+            color: #ffffff; /* White text color */
             font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify font */
         }
 
@@ -30,7 +31,7 @@
         }
 
         h1 {
-            color: #1DB954; /* Spotify green */
+            color: #1ed760; /* Spotify green */
             font-size: 48px;
             margin-bottom: 20px;
         }
@@ -46,8 +47,6 @@
         }
 
         button {
-            background-color: #1DB954; /* Spotify green */
-            color: #FFFFFF; /* White text color */
             border: none;
             padding: 12px 24px;
             margin-right: 10px;
@@ -56,10 +55,14 @@
             font-size: 16px;
             font-weight: bold;
             transition: background-color 0.3s ease;
+            background-color: #1ed760;
+            color: #ffffff
+
         }
 
         button:hover {
-            background-color: #1ED760; /* Lighter green on hover */
+            background-color: #e5ff00; /* Lighter green on hover */
+            color: black
         }
 
         ul {
@@ -69,28 +72,73 @@
         }
 
         button.selected {
-            background-color: #282828; /* Spotify grey for selected button */
+            background-color: #e5ff00; /* Lighter green on hover */
+            color: black /* Spotify grey for selected button */
         }
 
         li {
-        background-color: #282828; /* Darker background for recommended songs */
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 10px;
-        text-align: left;
-        font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify font */
-        font-size: 16px; /* Adjust font size as needed */
-        line-height: 1.6; /* Adjust line height as needed */
+            background-color: #282828;
+            padding: 20px;
+            margin: 20px; /* Add margin to create space between track cards */
+            border-radius: 10px;
+            text-align: left;
+            font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            transition: transform 0.3s ease;
+            position: relative;
+            list-style-type: none; /* Remove bullet points */
+        }
+
+
+        li:hover {
+            transform: scale(1.1);
         }
 
         a {
-            color: #1DB954; /* Spotify green for links */
+            color: #1db954; /* Spotify green for links */
             text-decoration: none;
         }
 
         a:hover {
             text-decoration: underline;
         }
+
+        .download-button {
+            background-color: #1db954; /* Spotify green */
+            color: #ffffff; /* White text color */
+            border: none;
+            padding: 12px 24px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-button:hover {
+            background-color: #e5ff00; /* Lighter green on hover */
+            color: black
+        }
+
+        .explicit-icon {
+            position: absolute;
+            vertical-align: middle;
+            right: 10px;
+            width: 20px; /* Adjust the width as needed */
+            height: 20px; /* Adjust the height as needed */
+        }
+
+        .track-info {
+            display: inline-block;
+            vertical-align: middle;
+            font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify font */
+            font-size: 16px; /* Adjust font size as needed */
+            line-height: 1.6; /* Adjust line height as needed */
+        }
+        
+
     </style>
 </head>
 
@@ -102,19 +150,31 @@
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
             {% for mood, label in form.mood_options %}
-            <button type="submit" name="selected_mood" value="{{ mood }}" {% if form.selected_mood.data == mood %}class="selected"{% endif %}>{{ label }}</button>
+                <button type="submit" name="selected_mood" value="{{ mood }}" {% if form.selected_mood.data == mood %}class="selected"{% endif %} class="{{ mood }}">{{ label }}</button>
             {% endfor %}
-        </form>
+        </form>                
         {% if recommended_tracks %}
         <h3>recommended playlist:</h3>
-        <ul>
-            {% for track_name, artists, spotify_url in recommended_tracks %}
-            <li>{{ track_name }} by {{ artists }} - <a href="{{ spotify_url }}" target="_blank">listen on spotify</a></li>
-            {% endfor %}
-        </ul>
+        {% for track_name, artists, spotify_url, track_uri, explicit in recommended_tracks %}
+            <li>
+                {% if explicit %}
+                    <img src="{{ url_for('static', filename='explicit-icon.png') }}" alt="Explicit Icon" class="explicit-icon">
+                {% endif %}
+                <span class="track-info">
+                    {{ track_name }} by {{ artists }} - <a href="{{ spotify_url }}" target="_blank">listen on spotify</a>
+                </span>
+            </li>        
+        {% endfor %}
+        <!-- Add the download button -->
+        <form method="post" action="{{ url_for('download') }}">
+            <input type="hidden" name="selected_tracks_uris" value="{% for _, _, _, track_uri, _ in recommended_tracks %}{{ track_uri }},{% endfor %}">
+            <button type="submit" class="download-button">download playlist!</button>
+        </form>
         {% endif %}
     </div>
 </body>
 
 </html>
 {% endblock %}
+
+
