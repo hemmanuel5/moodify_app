@@ -8,6 +8,9 @@ spotipy==2.18.0
 Werkzeug==2.1.1
 WTForms==2.3.3
 scikit-learn==0.24.2
+setuptools==58.3.0
+six==1.16.0
+
 
 
 
