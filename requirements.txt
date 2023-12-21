@@ -298,7 +298,7 @@ nspr=4.35=h313beb8_0
 nss=3.89.1=h313beb8_0
 numba=0.57.0=py311h7aedaa7_0
 numexpr=2.8.4=py311h6dc990b_1
-numpy=1.24.3=py311hb57d4eb_0
+numpy=1.21.2=py311hb57d4eb_0
 numpy-base=1.24.3=py311h1d85a46_0
 numpydoc=1.5.0=py311hca03da5_0
 oniguruma=6.9.7.1=h1a28f6b_0
