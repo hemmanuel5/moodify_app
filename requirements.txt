@@ -187,7 +187,7 @@ multipledispatch @ file:///Users/cbousseau/work/recipes/ci_py311/multipledispatc
 multiprocess @ file:///Users/cbousseau/work/recipes/ci_py311/multiprocess_1677942297511/work
 munkres==1.1.4
 mypy-extensions==0.4.3
-navigator-updater==0.4.0 >>
+navigator-updater==0.4.0
 nbclassic @ file:///private/var/folders/nz/j6p8yfhx1mv_0grj5xl4650h0000gp/T/abs_d6oy9w0m3l/croot/nbclassic_1681756176477/work
 nbclient @ file:///Users/cbousseau/work/recipes/ci_py311/nbclient_1677916908988/work
 nbconvert @ file:///Users/cbousseau/work/recipes/ci_py311/nbconvert_1677918402558/work
