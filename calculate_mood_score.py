@@ -4,8 +4,8 @@ import pandas as pd
 import numpy
 
 # Set up Spotify API credentials
-client_id = 'b6c8751ea57e47eb85f0eb7bc1603c4c'
-client_secret = '3adb2ef100294261a7009958064665dc'
+client_id = 'your-client-id'
+client_secret = 'your-client-secret'
 
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=client_id, client_secret=client_secret))
 
@@ -144,11 +144,3 @@ print(train_data_result)
 
 print("Testing Data: \n")
 print(test_data_result)
-
-
-
-
-                
-                
-
-
