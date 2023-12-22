@@ -53,5 +53,3 @@ test_data.to_csv('/Users/hemmanuel/Downloads/data_2_with_predicted_mood.csv', in
 # Evaluate the model
 accuracy = accuracy_score(y_test, predictions)
 print(f"Accuracy: {accuracy}")
-
-
