@@ -82,7 +82,7 @@ This script implements a Flask web application that allows users to input their 
 
 ## Known Issues and Bugs
 
-# 1. Authorization Redirect Issue
+### 1. Authorization Redirect Issue
 
 **Description:**
 Clicking the "Download" button is expected to redirect users to the Spotify login page for account authorization. However, there may be instances where the redirection does not occur as expected.
@@ -90,7 +90,7 @@ Clicking the "Download" button is expected to redirect users to the Spotify logi
 **Workaround:**
 If you encounter this issue, please ensure you are not already logged in to Spotify. If the problem persists, try refreshing the page or opening the app in an incognito/private browsing window.
 
-# 2. Playlist Description Display Issue
+### 2. Playlist Description Display Issue
 
 **Description:**
 The playlist description may not always appear when downloading a playlist.
@@ -98,7 +98,7 @@ The playlist description may not always appear when downloading a playlist.
 **Workaround:**
 If the playlist description is missing, you can manually add the description when importing the playlist into your Spotify account.
 
-# 3. Deployment Troubles and Requirements.txt
+### 3. Deployment Troubles and Requirements.txt
 
 **Description:** 
 There are difficulties deploying the application, and there might be issues with the `requirements.txt` file.
@@ -108,7 +108,7 @@ There are difficulties deploying the application, and there might be issues with
   - Verify that your deployment environment is compatible with the specified dependencies.
   - Check for error messages during deployment
 
-# 4. Favicon Not Showing Up
+### 4. Favicon Not Showing Up
 
 **Description:** The favicon specified in the `index.html` file may not be displayed.
 
