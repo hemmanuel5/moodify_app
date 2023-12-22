@@ -1,4 +1,4 @@
-<!--All jinja and bootstrap html code was created with the help of chatgpt-->
+<!-- All jinja and bootstrap HTML code was created with the help of chatgpt -->
 {% extends "bootstrap/base.html" %}
 
 {% block title %}moodify{% endblock %}
@@ -11,19 +11,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1DB954">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
     <title>moodify</title>
 
     <!-- Link to Spotify's color palette and font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Circular:wght@700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <style>
         body {
-            background-color: #191414; /* Spotify black */
-            color: #ffffff; /* White text color */
+            background-color: #121212; /* Darker background color */
+            color: #fff; /* White text color */
             font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify font */
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         .container {
@@ -31,16 +33,30 @@
             text-align: center;
         }
 
-        h1 {
-            color: #1ed760; /* Spotify green */
-            font-size: 48px;
+        .moodify-logo {
+            width: 200px;
             margin-bottom: 20px;
+        }
+
+        h1 {
+            color: white; /* Spotify green */
+            font-size: 60px;
+            margin-bottom: 10px; /* Adjusted margin for better spacing */
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         h4 {
             color: #b3b3b3; /* Light grey for subtitles */
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        #feeling-text {
+            font-size: 24px;
+            margin-bottom: 30px; /* Adjusted margin for better spacing */
+            font-weight: bold; /* Added bold font weight */
         }
 
         form {
@@ -49,21 +65,20 @@
 
         button {
             border: none;
-            padding: 12px 24px;
-            margin-right: 10px;
+            padding: 15px 20px;
+            margin: 0 10px;
             cursor: pointer;
             border-radius: 50px;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
-            transition: background-color 0.3s ease;
-            background-color: #1ed760;
-            color: #ffffff
-
+            transition: background-color 0.3s ease, color 0.3s ease; /* Added color transition */
+            background-color: #1ed760; /* Spotify green */
+            color: #000; /* Black text color */
         }
 
         button:hover {
             background-color: #e5ff00; /* Lighter green on hover */
-            color: black
+            color: #000;
         }
 
         ul {
@@ -74,106 +89,134 @@
 
         button.selected {
             background-color: #e5ff00; 
-            color: black 
+            color: #000;
         }
 
-        li {
-            background-color: #282828;
+        .playlist-section {
+            background-color: #282828; /* Dark background for the playlist section */
+            padding: 40px; /* Add padding for better visibility */
+            border-radius: 20px;
+            margin-top: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .track-info {
+            display: block;
+            font-size: 18px; /* Adjust font size as needed */
+            line-height: 1.6; /* Adjust line height as needed */
+            color: #fff; /* White text color */
+            margin-top: 10px;
+        }
+
+        .download-button {
+            background-color: #1ed760; /* Spotify green */
+            color: #fff; /* White text color */
+            border: none;
+            padding: 15px 20px;
+            margin-top: 30px;
+            cursor: pointer;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Added color transition */
+        }
+
+        .download-button:hover {
+            background-color: #e5ff00; /* Lighter green on hover */
+            color: #000;
+        }
+
+        .explicit-icon {
+            width: 25px; 
+            height: 25px; 
+        }
+
+        .playlist-item {
+            background-color: #333; /* Darker background for each playlist item */
             padding: 20px;
-            margin: 20px; /* Add margin to create space between track cards */
-            border-radius: 10px;
+            margin: 20px;
+            border-radius: 15px;
             text-align: left;
-            font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
             transition: transform 0.3s ease;
             position: relative;
-            list-style-type: none; /* Remove bullet points */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-
-        li:hover {
-            transform: scale(1.1);
+        .playlist-item:hover {
+            transform: scale(1.05);
         }
 
         a {
             color: #1db954; /* Spotify green for links */
             text-decoration: none;
+            font-weight: bold;
         }
 
         a:hover {
             text-decoration: underline;
         }
-
-        .download-button {
-            background-color: #1db954; /* Spotify green */
-            color: #ffffff; /* White text color */
-            border: none;
-            padding: 12px 24px;
-            margin-top: 20px;
-            cursor: pointer;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .download-button:hover {
-            background-color: #e5ff00; /* Lighter green on hover */
-            color: black
-        }
-
-        .explicit-icon {
-            position: absolute;
-            vertical-align: middle;
-            right: 10px;
-            width: 20px; 
-            height: 20px; 
-        }
-
-        .track-info {
-            display: inline-block;
-            vertical-align: middle;
-            font-family: 'Circular', 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Spotify font */
-            font-size: 16px; /* Adjust font size as needed */
-            line-height: 1.6; /* Adjust line height as needed */
-        }
-
     </style>
 </head>
 
+
 <body>
     <div class="container">
-        <h1><b>moodify</b></h1>
+        <img src="{{ url_for('static', filename='favicon.png') }}" alt="moodify Logo" class="moodify-logo">
+        <h1>moodify</h1>
         <h4>your mood-based music recommendation system</h4>
+        <p id="feeling-text"></p>
         <form method="post" action="{{ url_for('index') }}">
             {{ form.hidden_tag() }}
             {{ form.csrf_token }}
-            {% for mood, label in form.mood_options %}
+            <div>
+                {% for mood, label in form.mood_options %}
                 <button type="submit" name="selected_mood" value="{{ mood }}" {% if form.selected_mood.data == mood %}class="selected"{% endif %} class="{{ mood }}">{{ label }}</button>
-            {% endfor %}
-        </form>                
+                {% endfor %}
+            
+            </div>
+        </form>                              
         {% if recommended_tracks %}
-        <h3>recommended playlist:</h3>
-        {% for track_name, artists, spotify_url, track_uri, explicit in recommended_tracks %}
-            <li>
-                {% if explicit %}
-                    <img src="{{ url_for('static', filename='explicit-icon.png') }}" alt="Explicit Icon" class="explicit-icon">
-                {% endif %}
-                <span class="track-info">
-                    {{ track_name }} by {{ artists }} - <a href="{{ spotify_url }}" target="_blank">listen on spotify</a>
-                </span>
-            </li>        
-        {% endfor %}
-        <!-- Add the download button -->
-        <form method="post" action="{{ url_for('download') }}">
-            <input type="hidden" name="selected_tracks_uris" value="{% for _, _, _, track_uri, _ in recommended_tracks %}{{ track_uri }},{% endfor %}">
-            <button type="submit" class="download-button">download playlist!</button>
-        </form>
+        <div class="playlist-section">
+            <h3>recommended playlist:</h3>
+            <ul>
+                {% for track_name, artists, spotify_url, track_uri, explicit in recommended_tracks %}
+                    <li class="playlist-item">
+                        {% if explicit %}
+                            <img src="{{ url_for('static', filename='explicit-icon.png') }}" alt="Explicit Icon" class="explicit-icon">
+                        {% endif %}
+                        <span class="track-info">
+                            {{ track_name }} by {{ artists }} - <a href="{{ spotify_url }}" target="_blank">listen on Spotify</a>
+                        </span>
+                    </li>        
+                {% endfor %}
+            </ul>
+            <!-- Add the download button -->
+            <form method="post" action="{{ url_for('download') }}">
+                <input type="hidden" name="selected_tracks_uris" value="{% for _, _, _, track_uri, _ in recommended_tracks %}{{ track_uri }},{% endfor %}">
+                <button type="submit" class="download-button">download playlist!</button>
+            </form>
+        </div>
         {% endif %}
     </div>
+
+    <script>
+        // JavaScript to type out the sentence in real-time
+        const feelingText = document.getElementById('feeling-text');
+        const sentence = 'how are you feeling today?';
+        let index = 0;
+
+        function typeSentence() {
+            if (index < sentence.length) {
+                feelingText.innerHTML += sentence.charAt(index);
+                index++;
+                setTimeout(typeSentence, 80); 
+            }
+        }
+        feelingText.style.color = '#F8D0F6';
+        typeSentence();
+    </script>
 </body>
+
 
 </html>
 {% endblock %}
-
