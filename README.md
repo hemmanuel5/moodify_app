@@ -1,7 +1,5 @@
 # moodify
 
-(https://u-static.fotor.com/images/text-to-image/result/PRO-86567ca744f44113923365d6eb76f39f.jpg)
-
 The moodify app is a Flask-based web application that helps users discover mood-enhancing music recommendations. All functions and app routes were created with the assistance of the Python and Flask communities, particularly from discussions on [r/python](https://www.reddit.com/r/python/) and [r/flask](https://www.reddit.com/r/flask/).
 
 
