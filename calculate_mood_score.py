@@ -63,9 +63,10 @@ def calculate_mood_score(train_data):
 
     train_data[numeric_columns] = train_data[numeric_columns].apply(pd.to_numeric, errors='coerce')
 
+    #mood_score formula created by chatgpt
     mood_score = train_data[weights.keys()].dot(pd.Series(weights))
 
-    # Mood conditions
+    # Most of the mood conditions created by chatgpt
     neutral_threshold = 0.1  # Adjust as needed
     neutral_condition = (mood_score > -neutral_threshold) & (mood_score < neutral_threshold)
     neutral_condition = neutral_condition & (train_data['acousticness'] > 0.4) & (train_data['valence'] > 0.3)  # Adjust as needed
@@ -143,3 +144,11 @@ print(train_data_result)
 
 print("Testing Data: \n")
 print(test_data_result)
+
+
+
+
+                
+                
+
+

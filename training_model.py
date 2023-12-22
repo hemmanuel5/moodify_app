@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
@@ -20,7 +19,6 @@ if any(col in test_data.columns for col in columns_to_drop_test):
     test_data = test_data.drop(columns_to_drop_test, axis=1)
     test_data.to_csv('/Users/hemmanuel/Downloads/data_2_with_mood_', index=False)
 
-# Assuming 'mood' is your target variable and other columns are features
 X_train = train_data[['valence','acousticness','danceability',
                     'duration_ms','energy','explicit','instrumentalness',
                     'key','liveness','loudness','mode',
@@ -28,7 +26,6 @@ X_train = train_data[['valence','acousticness','danceability',
 
 y_train = train_data['mood']
 
-# Assuming the testing set has similar columns as the training set
 X_test = test_data[['valence','acousticness','danceability',
                     'duration_ms','energy','explicit','instrumentalness',
                     'key','liveness','loudness','mode',
@@ -47,7 +44,7 @@ predictions = model.predict(X_test)
 # Add the predicted mood to the testing data
 test_data['predicted_mood'] = predictions
 
-# Print or save the testing data with predicted mood
+# Print/save the testing data with predicted mood
 print(test_data[['track_id', 'track_name', 'predicted_mood']])
 
 # Save the testing data with predicted mood to a new CSV file
@@ -57,5 +54,4 @@ test_data.to_csv('/Users/hemmanuel/Downloads/data_2_with_predicted_mood.csv', in
 accuracy = accuracy_score(y_test, predictions)
 print(f"Accuracy: {accuracy}")
 
-print(train_data['mood'].unique())
 

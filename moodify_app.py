@@ -1,3 +1,4 @@
+'''all functions/app routes were created with the help of chatgpt or r/python, r/flask subreddit!!'''
 from flask import Flask, render_template, redirect, url_for, request, session
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -11,6 +12,7 @@ import secrets
 from flask import jsonify, send_file
 from datetime import datetime
 import io
+import time
 
 app = Flask(__name__, static_url_path='/static')
 bootstrap = Bootstrap(app)
@@ -24,6 +26,7 @@ app.config['SPOTIPY_REDIRECT_URI'] = 'http://localhost:5001/callback'
 
 client_credentials_manager = SpotifyClientCredentials(
     client_id='b6c8751ea57e47eb85f0eb7bc1603c4c', client_secret='3adb2ef100294261a7009958064665dc')
+
 # Set up Spotify OAuth
 sp_oauth = SpotifyOAuth(app.config['SPOTIPY_CLIENT_ID'], app.config['SPOTIPY_CLIENT_SECRET'],
                        app.config['SPOTIPY_REDIRECT_URI'], scope=['user-library-modify', 'playlist-modify-public'])
@@ -34,13 +37,6 @@ auth_url = sp_oauth.get_authorize_url()
 
 test_df = pd.read_csv('/Users/hemmanuel/Downloads/data_2_with_predicted_mood.csv')
 
-# token = spotipy.util.prompt_for_user_token(
-#     scope='user-library-modify playlist-modify-public', 
-#     client_id=app.config['SPOTIPY_CLIENT_ID'], 
-#     client_secret=app.config['SPOTIPY_CLIENT_SECRET'], 
-#     redirect_uri="http://localhost:5001/callback"
-# )
-# sp3 = spotipy.Spotify(auth=token)
 
 class MoodForm(FlaskForm):
     mood_options = [
@@ -141,28 +137,28 @@ def download():
         playlist_name = f"moodify playlist ({selected_mood} - {timestamp})"
         playlist_description = f"created at {timestamp} based on the mood: {selected_mood}. recommended tracks by moodify."
 
+        # Generate the playlist file or data
+        short_playlist_name, playlist_content = generate_playlist(selected_tracks_uris, playlist_name, playlist_description)
+
+        time.sleep(3)
+
         # Create the playlist and add tracks
         playlist = sp2.user_playlist_create(sp2.me()['id'], playlist_name, public=True, collaborative=False, description=playlist_description)
         playlist_add_response = sp2.playlist_add_items(playlist['id'], selected_tracks_uris)
         print(playlist_add_response)
 
-        # Generate the playlist file or data
-        short_playlist_name, playlist_content = generate_playlist(selected_tracks_uris, playlist_name, playlist_description)
-
-        # Provide the playlist file or data in the response
+        # Set the Content-Disposition header to include the playlist description before sending the file
         response = send_file(io.BytesIO(playlist_content.encode('utf-8')),
-                                as_attachment=True,
-                                download_name=f'{short_playlist_name}.m3u')
+                            as_attachment=True,
+                            download_name=f'{short_playlist_name}.m3u')
 
-        # Set the Content-Disposition header to include the playlist description
         response.headers["Content-Disposition"] = f'attachment; filename={short_playlist_name}.m3u; playlist-description="{playlist_description}"'
-
+        
         print("Playlist created and tracks added successfully!")
 
         return redirect(url_for('index'))
 
     except spotipy.SpotifyException as e:
-        # Handle Spotify API exceptions as needed
         print(f"Error making Spotify API request: {e}")
         return jsonify({"error": str(e)})
 
@@ -170,6 +166,7 @@ def download():
         print(f"Error creating or adding tracks to the playlist: {e}")
         return jsonify({"error": str(e)})
 
+#Route for handling Spotify login
 @app.route('/spotify_login')
 def spotify_login():
     auth_url = sp_oauth.get_authorize_url()
