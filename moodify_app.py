@@ -20,12 +20,12 @@ bootstrap = Bootstrap(app)
 app.template_folder = 'templates'
 
 app.config['SECRET_KEY'] = secrets.token_hex(16)
-app.config['SPOTIPY_CLIENT_ID'] = 'b6c8751ea57e47eb85f0eb7bc1603c4c'
-app.config['SPOTIPY_CLIENT_SECRET'] = '3adb2ef100294261a7009958064665dc'
+app.config['SPOTIPY_CLIENT_ID'] = 'your-client-id'
+app.config['SPOTIPY_CLIENT_SECRET'] = 'your-client-secret'
 app.config['SPOTIPY_REDIRECT_URI'] = 'http://localhost:5001/callback'
 
 client_credentials_manager = SpotifyClientCredentials(
-    client_id='b6c8751ea57e47eb85f0eb7bc1603c4c', client_secret='3adb2ef100294261a7009958064665dc')
+    client_id='your-client-id', client_secret='your-client-secret')
 
 # Set up Spotify OAuth
 sp_oauth = SpotifyOAuth(app.config['SPOTIPY_CLIENT_ID'], app.config['SPOTIPY_CLIENT_SECRET'],
