@@ -30,7 +30,7 @@ This script loads training and testing data, preprocesses it, trains a Decision 
 
 ### `moodify_app.py`
 
-This script implements a Flask web application that allows users to input their mood and receive personalized music recommendations. It interacts with the Spotify API to create and download playlists.
+This script implements a Flask web application that allows users to input their mood and receive personalized music recommendations. It interacts with the Spotify API to create and download playlists to the user's profile.
 
 
 ## Getting Started
