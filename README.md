@@ -87,10 +87,10 @@ This script implements a Flask web application that allows users to input their 
 ### 1. Authorization Redirect Issue
 
 **Description:**
-Clicking the "Download" button is expected to redirect users to the Spotify login page for account authorization. However, there may be instances where the redirection does not occur as expected.
+Clicking the "download playlist!" button is expected to redirect users to the Spotify login page for account authorization. However, there may be instances where the redirection does not occur as expected, or you may be redirected to the Spotify login page, but your playlist isn't automatically added to your profile. This typically happens the first time the "download playlist!" button is selected, and if the user has not logged in to their Spotify account.
 
 **Workaround:**
-If you encounter this issue, please ensure you are not already logged in to Spotify. If the problem persists, try refreshing the page or opening the app in an incognito/private browsing window.
+If you encounter this issue, please ensure that you are not already logged in to Spotify. If the problem persists, try refreshing the page or opening the app in an incognito/private browsing window. If it's your first time accessing the website and you see a playlist you want to download, please download these songs manually, as they might not be saved to your profile the first time.
 
 ### 2. Playlist Description Display Issue
 
