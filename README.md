@@ -1,6 +1,6 @@
 # moodify
 
-![Moodify Logo](https://github.com/hemmanuel5/moodify_app/assets/126534510/d684273e-1941-48ef-bcfe-9dbd396defe4 "Moodify Logo"){:width="300" height="300"}
+![Moodify Logo](https://raw.githubusercontent.com/hemmanuel5/moodify_app/main/assets/126534510/d684273e-1941-48ef-bcfe-9dbd396defe4)<!-- {:width="300" height="300"} -->
 
 The moodify app is a Python-based application that analyzes music data to determine the mood of a track and provides personalized recommendations based on the user's mood. The application consists of three main scripts: `calculate_mood_score.py`, `training_model.py`, and `moodify_app.py`. This README provides information on each script and instructions for setting up and running the moodify app.
 
