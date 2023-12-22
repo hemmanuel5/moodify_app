@@ -1,8 +1,8 @@
 # moodify
 
-![image](https://github.com/hemmanuel5/moodify_app/assets/126534510/d9c4eca1-b239-4b95-be49-490a5f35fb22)
+<img src="[https://example.com/path/to/your/image.jpg](https://u-static.fotor.com/images/text-to-image/result/PRO-86567ca744f44113923365d6eb76f39f.jpg)" alt="moodify_logo" width="300" height="300">
 
-The moodify app is a Python-based application that analyzes music data to determine the mood of a track and provides personalized recommendations based on the user's mood. The application consists of three main scripts: `calculate_mood_score.py`, `training_model.py`, and `moodify_app.py`. This README provides information on each script and instructions for setting up and running the Moodify App.
+The moodify app is a Python-based application that analyzes music data to determine the mood of a track and provides personalized recommendations based on the user's mood. The application consists of three main scripts: `calculate_mood_score.py`, `training_model.py`, and `moodify_app.py`. This README provides information on each script and instructions for setting up and running the moodify app.
 
 ## Table of Contents
 - [Scripts](#scripts)
@@ -13,7 +13,7 @@ The moodify app is a Python-based application that analyzes music data to determ
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
 - [Usage](#usage)
-- [Known Issues and Bugs]((#known-issues-and-bugs)
+- [Known Issues and Bugs](#known-issues-and-bugs)
 - [References](#references)
 
 ## Scripts
@@ -100,12 +100,19 @@ If the playlist description is missing, you can manually add the description whe
 
 # 3. Deployment Troubles and Requirements.txt
 
-- **Issue Description:** There are difficulties deploying the application, and there might be issues with the `requirements.txt` file.
+**Description:** 
+There are difficulties deploying the application, and there might be issues with the `requirements.txt` file.
 
-- **Potential Solutions:**
+**Workaround:**
   - Double-check the contents of `requirements.txt` to ensure all necessary dependencies and versions are specified correctly.
   - Verify that your deployment environment is compatible with the specified dependencies.
   - Check for error messages during deployment
+
+# 4. Favicon Not Showing Up
+
+**Description:** The favicon specified in the `index.html` file may not be displayed.
+
+**Workaround:** Verify the path and file format of the favicon. Ensure it is correctly referenced in the HTML file, and the file is accessible.
 
 
 ## References
@@ -114,11 +121,11 @@ The development of the moodify app was influenced and guided by discussions and 
 
 - ChatGPT and the OpenAI community
 - Reddit communities: r/python, r/flask
-- [Training Data]([https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset)https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset])
-- [Testing Data]([https://www.kaggle.com/code/vatsalmavani/music-recommendation-system-using-spotify-dataset/input])
-- [Spotipy Documentation]([https://spotipy.readthedocs.io/en/2.22.1/#api-reference])
-- [Spotify Developer Documentation]([https://developer.spotify.com/documentation/web-api])
-- [Medium Article]([https://towardsdatascience.com/build-your-first-mood-based-music-recommendation-system-in-python-26a427308d96])
-- [Music Mood Prediction Based on Spotify’s AudioFeatures Using Logistic Regression research paper]([https://www.researchgate.net/publication/370450676_Music_Mood_Prediction_Based_on_Spotify's_Audio_Features_Using_Logistic_Regression])
+- [Training Data](https://huggingface.co/datasets/maharshipandya/spotify-tracks-dataset)
+- [Testing Data](https://www.kaggle.com/code/vatsalmavani/music-recommendation-system-using-spotify-dataset/input)
+- [Spotipy Documentation](https://spotipy.readthedocs.io/en/2.22.1/#api-reference)
+- [Spotify Developer Documentation](https://developer.spotify.com/documentation/web-api)
+- [Medium Article](https://towardsdatascience.com/build-your-first-mood-based-music-recommendation-system-in-python-26a427308d96)
+- [Music Mood Prediction Based on Spotify’s AudioFeatures Using Logistic Regression research paper](https://www.researchgate.net/publication/370450676_Music_Mood_Prediction_Based_on_Spotify's_Audio_Features_Using_Logistic_Regression)
   
 
