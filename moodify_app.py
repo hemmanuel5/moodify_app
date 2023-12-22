@@ -29,7 +29,7 @@ client_credentials_manager = SpotifyClientCredentials(
 
 # Set up Spotify OAuth
 sp_oauth = SpotifyOAuth(app.config['SPOTIPY_CLIENT_ID'], app.config['SPOTIPY_CLIENT_SECRET'],
-                       app.config['SPOTIPY_REDIRECT_URI'], scope=['user-library-modify', 'playlist-modify-public'])
+                       app.config['SPOTIPY_REDIRECT_URI'], scope=['user-library-modify playlist-modify-public playlist-modify-private'])
 
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
@@ -118,6 +118,7 @@ def download():
 
         # Check if the user is already authorized
         token_info = sp_oauth.get_cached_token()
+        print(token_info)
 
         if not token_info:
             # If not authorized, redirect the user to the Spotify login page
